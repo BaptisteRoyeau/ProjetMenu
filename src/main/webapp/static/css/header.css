@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+
+/* html, body{
+	background-color: black;
+	background: url('redi_montage.gif') fixed no-repeat bottom right;
+	font-family: 'Numans', sans-serif;
+}
+
+nav{
+	height: 35px;	
+	align-content: center;
+	justify-content: center;
+}
+
+h1, h2{
+	text-align: center;
+}
+
+.container-fluid {
+	height: 75px;
+	font-size: 20px;
+}
+
+.navbar-brand{
+	height: 75px;
+	font-size: 20px;
+} */
+
+.container-fluid{
+	display: flex;	
+}
+
+.navbar-nav {
+	display: flex;
+	flex-direction: row;
+
+}
