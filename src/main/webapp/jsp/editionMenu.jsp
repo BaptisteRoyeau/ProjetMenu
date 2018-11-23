@@ -114,7 +114,6 @@
                   		<input type="hidden" name="idMenu" value="${idMenu}"/>
                   		<button type="submit" class="btn btn-sm btn-primary btn-create">Ajouter un aliment</button>
                   	</form>
-                    
                   </div>
                 </div>
               </div>
@@ -202,6 +201,11 @@
 		</div>
 	</div>
 </div>
-
+<div id="formDelete">
+	<form action="editionMenu/delete" method="post">
+		<input type="hidden" name="idMenu" value="${idMenu}"/>
+		<button type="submit" class="btn btn-sm btn-primary btn-create" id="deleteMenuBtn">Supprimer mon menu</button>
+	</form>
+</div>
 </body>
 </html>

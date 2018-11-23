@@ -8,6 +8,7 @@ function editMenu() {
 	if(test != null){
 		if (test == "1") {
 			document.getElementById("container").style.display = "block";
+			document.getElementById("formDelete").style.display = "block";
 			test=0;
 		}
 	}
@@ -25,8 +26,8 @@ function editAliment() {
 }
 
 function terminer(){
-	document.getelementbyid("btnterminer").addeventlistener("click", function() {
-		document.getelementbyid("ajoutAlimentMenu").style.display = "none";
+	document.getelementbyId("btnterminer").addeventlistener("click", function() {
+		document.getelementbyId("ajoutAlimentMenu").style.display = "none";
 	});
 }
 

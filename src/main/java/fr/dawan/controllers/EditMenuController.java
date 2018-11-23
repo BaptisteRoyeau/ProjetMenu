@@ -114,4 +114,31 @@ public class EditMenuController {
 		return "redirect:/login"; 
 	}
 	
+	@PostMapping("/delete")
+	public String delete(Model model, HttpSession session) {
+		Object utilisateurId = session.getAttribute("idUser");
+		if(utilisateurId != null) {
+			
+			List<AlimentMenu> alsMenus = daoAlimentMenu.findAllbyId(AlimentMenu.class, "menu_id", (int) session.getAttribute("idMenuEnCours"));
+			for (AlimentMenu alimentMenu : alsMenus) {
+				daoAlimentMenu.delete(AlimentMenu.class, alimentMenu.getId());
+			}
+			
+			daoMenu.delete(CompositionMenu.class, (int) session.getAttribute("idMenuEnCours"));
+			
+			List<CompositionMenu> menus = daoMenu.findAllbyId(CompositionMenu.class, "utilisateur_id", (int) session.getAttribute("idUser"));
+			model.addAttribute("listeMenus", menus);
+			
+		
+			model.addAttribute("afficheDetailMenu", "0");
+			model.addAttribute("afficheAjoutAliment", "0");
+			
+			List<AlimentRef> alsRef = daoAlRef.findAllbyId(AlimentRef.class, "utilisateur_id",	(Integer) session.getAttribute("idUser"));
+			model.addAttribute("alsRef", alsRef);
+			
+			return "editionMenu";
+		}
+		return "redirect:/login"; 
+	}
+	
 }

@@ -22,12 +22,12 @@
 <title>Inscription</title>
 </head>
 <body>
-	<form action="ajoutUtilisateur" method="post">
+	<!-- <form action="ajoutUtilisateur" method="post">
 		Votre nouvel identifiant : <input type="text" name="username" placeholder="Identifiant"/>
 		Votre nouveau mot de passe : <input type="password" name="password" placeholder="Mot de passe"/>
 		Votre adresse : <input type="text" name="adresse" placeholder="Votre adresse"/>
 		<input type="submit" value="Inscription"/>
-	</form>
+	</form> -->
 	
 	<div class="container">
 			<div class="row main">

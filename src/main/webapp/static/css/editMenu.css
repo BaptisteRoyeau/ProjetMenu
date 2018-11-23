@@ -32,6 +32,17 @@ h1{
 	text-align: center;
 }
 
+#deleteMenuBtn{
+	background-color: #C9302C;
+	text-align: center;
+	border-color: #C9302C
+}
+
+#formDelete{
+	text-align: center;
+	display: none;
+}
+
 .panel-table .panel-body{
   padding:0;
 }
