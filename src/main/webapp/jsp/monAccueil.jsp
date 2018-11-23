@@ -19,7 +19,7 @@
 </head>
 <body>	
 	<!-- <header> -->
-		<h1>Bienvenue sur votre accueil personnalisé ${utilisateur}</h1>
+		<h1>Bienvenue sur votre accueil personnalisée ${utilisateur}</h1>
 
 
 	
