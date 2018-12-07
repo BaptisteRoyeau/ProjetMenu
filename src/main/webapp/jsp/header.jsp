@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <head>
 	
@@ -25,14 +25,14 @@
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li> -->
-      <li><a href="editionMenu/afficherListeMenus">Mes menus</a></li>
-      <li><a href="editionAlimentRef">Mes aliments</a></li>
-      <li><a href="#">Nous contacter</a></li>
-      <li><a href="#">F.A.Q</a></li>
+      <li><a href="editionMenu/afficherListeMenus"><spring:message code="NAVBAR_MENU" text="texte par défaut si aucune clé n’est trouvée"/></a></li>
+      <li><a href="editionAlimentRef"><spring:message code="NAVBAR_REF_FOOD" text="texte par défaut si aucune clé n’est trouvée"/></a></li>
+      <li><a href="retourAccueil"><spring:message code="NAVBAR_CONTACT_US" text="texte par défaut si aucune clé n’est trouvée"/></a></li>
+      <li><a href="retourAccueil"><spring:message code="NAVBAR_QUESTION" text="texte par défaut si aucune clé n’est trouvée"/></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="espacePerso/afficher"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
-      <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <li><a href="espacePerso/afficher"><span class="glyphicon glyphicon-user"></span><spring:message code="NAVBAR_MY_ACCOUNT" text="texte par défaut si aucune clé n’est trouvée"/></a></li>
+      <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span><spring:message code="NAVBAR_LOGOUT" text="texte par défaut si aucune clé n’est trouvée"/></a></li>
     </ul>
   </div>
 </nav>

@@ -34,13 +34,15 @@ public class LoginController {
 	}
 
 	@GetMapping("/inscription")
-	public String afficherInscription() {
+	public String afficherInscription(Model model) {
 		return "inscription";
 	}
 
 	@PostMapping("/identification")
 	public String validationIdentification(Model model, Utilisateur utilisateur, HttpSession session) {
 		List<Utilisateur> user = daoUtilisateur.findAll(Utilisateur.class);
+		
+		utilisateur.setPassword(convertToMD5(utilisateur.getPassword()));
 
 		for (Utilisateur utilisateur2 : user) {
 			System.out.println(utilisateur2.getUsername());
@@ -69,13 +71,42 @@ public class LoginController {
 
 	@PostMapping("/ajoutUtilisateur")
 	public String ajoutUtilisateur(Model model, Utilisateur utilisateur) {
-		daoUtilisateur.createOrUpdate(utilisateur);
-		return "redirect:/login";
+		
+		try {
+			utilisateur.setPassword(convertToMD5(utilisateur.getPassword()));
+			daoUtilisateur.createOrUpdate(utilisateur);
+			return "redirect:/login";
+		} catch (Exception e) {
+			System.out.println(e);
+			model.addAttribute("emailError",
+					"/!\\ Email déjà utilisé ! Veuillez vous connecter avec votre compte ou utiliser une autre adresse email.");
+			model.addAttribute("username", utilisateur.getUsername());
+			model.addAttribute("lastName", utilisateur.getLastName());
+			model.addAttribute("sexe", utilisateur.getSexe());
+			model.addAttribute("size", utilisateur.getTaille());
+			model.addAttribute("weight", utilisateur.getPoids());
+			return "inscription";
+		}
+
 	}
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/login";
+	}
+
+	public String convertToMD5(String stringToConvert) {
+		try {
+			java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+			byte[] array = md.digest(stringToConvert.getBytes());
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < array.length; ++i) {
+				sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
+			}
+			return sb.toString();
+		} catch (java.security.NoSuchAlgorithmException e) {
+		}
+		return null;
 	}
 }

@@ -1,6 +1,8 @@
+<%@page import="org.springframework.web.context.annotation.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,21 +32,46 @@
 
 </head>
 <body>
+<spring:message code="BUTTON_SELECTION" text="ERROR" var="BUTTON_SELECTION"/>
+<spring:message code="BUTTON_CREATE_MENU" text="ERROR" var="BUTTON_CREATE_MENU"/>
+<spring:message code="BUTTON_ADD_FOOD" text="ERROR" var="BUTTON_ADD_FOOD"/>
+<spring:message code="TABLE_TITLE_FOODD_LIST_IN_MENU" text="ERROR" var="TABLE_TITLE_FOODD_LIST_IN_MENU" arguments="<b>${sessionScope.nomMenuEnCours}</b>"/>
+<spring:message code="BUTTON_ADD_FOOD" text="ERROR" var="BUTTON_ADD_FOOD"/>
+<spring:message code="TABLE_HEADER_FOOD_NAME" text="ERROR" var="TABLE_HEADER_FOOD_NAME"/>
+<spring:message code="TABLE_HEADER_QUANTITY" text="ERROR" var="TABLE_HEADER_QUANTITY"/>
+<spring:message code="TABLE_HEADER_CALORIES" text="ERROR" var="TABLE_HEADER_CALORIES"/>
+<spring:message code="TABLE_HEADER_VEGETAL_PROTEINS" text="ERROR" var="TABLE_HEADER_VEGETAL_PROTEINS"/>
+<spring:message code="TABLE_HEADER_ANIMAL_PROTEINS" text="ERROR" var="TABLE_HEADER_ANIMAL_PROTEINS"/>
+<spring:message code="TABLE_HEADER_LIPIDS" text="ERROR" var="TABLE_HEADER_LIPIDS"/>
+<spring:message code="TABLE_HEADER_CARBS" text="ERROR" var="TABLE_HEADER_CARBS"/>
+<spring:message code="BUTTON_DELETE_MENU" text="ERROR" var="BUTTON_DELETE_MENU"/>
+<spring:message code="FORM_MENU_FOOD_ALREF" text="ERROR" var="FORM_MENU_FOOD_ALREF"/>
+<spring:message code="BUTTON_ADD_FOOD" text="ERROR" var="BUTTON_ADD_FOOD"/>
+<spring:message code="TERMINATE_BUTTON" text="ERROR" var="TERMINATE_BUTTON"/>
+
+
 
 	<input type="hidden" name="afficheDetail" id="afficheDetail" value="${afficheDetailMenu}"/>
 	<input type="hidden" name="afficheAjoutAliment" id="afficheAjoutAliment" value="${afficheAjoutAliment}"/>
 	
 	<div class="containerSelectionMenu">
 		<form action="editionMenu/selectionMenuAEditer" method="post">
-			<select name="selectionMenu" >
+			<select name="selectionMenu" id="selectionMenu" >
 				<core:forEach var="menu" items="${listeMenus}">
-					<option value="${menu.id}"> ${menu.nom}</option>
+					<core:choose>
+					    <core:when test="${idMenuEnCours == menu.id}">
+					        <option value="${menu.id}" selected="selected"> ${menu.nom}</option>
+					    </core:when>    
+					    <core:otherwise>
+					        <option value="${menu.id}"> ${menu.nom}</option>
+					    </core:otherwise>
+					</core:choose>
 				</core:forEach>	
 			</select>
-			<input type="submit" class="btn btn-sm btn-primary btn-create" value ="Selectionner"/>
+			<input type="submit" class="btn btn-sm btn-primary btn-create" value ="${BUTTON_SELECTION }"/>
 		</form>
 		<form action="editionMenu/afficherAjoutMenu" method="post">
-			<input type="submit" class="btn btn-sm btn-primary btn-create" value ="Créer un nouveau menu"/>
+			<input type="submit" class="btn btn-sm btn-primary btn-create" value ="${BUTTON_CREATE_MENU }"/>
 		</form>
 	</div>
 	
@@ -58,7 +85,7 @@
 		                <div class="panel-body form-horizontal payment-form">
 		                    
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Aliment</label>
+		                        <label for="status" class="col-sm-3 control-label">${FORM_MENU_FOOD_ALREF }</label>
 		                        <div class="col-sm-9">
 		                            <select class="form-control" name="selectionAlimentRef">
 										<core:forEach var="aliment" items="${alsRef}">
@@ -68,20 +95,20 @@
 		                        </div>
 		                    </div> 
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Quantité</label>
+		                        <label for="status" class="col-sm-3 control-label">${TABLE_HEADER_QUANTITY }</label>
 		                        <div class="col-sm-9">
 		                            <input type="number" required="required" value="0" class="form-control" id="quantite" name="quantite" min="0" step="0.01"/>
 		                        </div>
 		                    </div>
 		          			<div class="row">
 				                <div class="col-xs-12">
-									<button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+									<button type="submit" class="btn btn-primary btn-block">${BUTTON_ADD_FOOD }</button>
 				                </div>                
 				            </div>
 				            <div class="row">
 				                <div class="col-xs-12">
 				                    <hr style="border:1px dashed #dddddd;">
-				                    <a href="editionMenu/finAjout" class="btn btn-primary btn-block" id="btnTerminer">Terminer</a>
+				                    <a href="editionMenu/finAjout" class="btn btn-primary btn-block" id="btnTerminer">${TERMINATE_BUTTON }</a>
 				                </div>                
 				            </div>
 		                </div>
@@ -91,14 +118,6 @@
 		</div>
 	</form>
 	</div>
-<%-- 		<select name="selectionAlimentRef" >
-			<core:forEach var="aliment" items="${alsRef}">
-				<option value="${aliment.id}"> ${aliment.nom}</option>
-			</core:forEach>	
-		</select>
-		Quantité : <input type="number" name="quantite" step="0.01" min="0"/>
-		<input type="submit" value ="Selectionner"/>
-	</form> --%>
 	<div class="container" id="container">
     <div class="row">
     	<div class="col-md-10 col-md-offset-1">
@@ -107,12 +126,12 @@
               <div class="panel-heading">
                 <div class="row">
                   <div class="col col-xs-6">
-                    <h3 class="panel-title">Aliments de mon menu <b>${sessionScope.nomMenuEnCours}</b></h3>
+                    <h3 class="panel-title">${TABLE_TITLE_FOODD_LIST_IN_MENU}</h3>
                   </div>
                   <div class="col col-xs-6 text-right">
                   	<form action="editionAlimentMenu/afficherAjout" method="post">
                   		<input type="hidden" name="idMenu" value="${idMenu}"/>
-                  		<button type="submit" class="btn btn-sm btn-primary btn-create">Ajouter un aliment</button>
+                  		<button type="submit" class="btn btn-sm btn-primary btn-create">${BUTTON_ADD_FOOD }</button>
                   	</form>
                   </div>
                 </div>
@@ -122,13 +141,13 @@
                   <thead>
                     <tr>
                     	<th scope="col">Action</th>
-                          <th scope="col">Nom</th>
-					      <th scope="col">Quantité</th>
-					      <th scope="col">Calories</th>
-					      <th scope="col">Protéines végétales</th>
-					      <th scope="col">Protéines Animales</th>
-					      <th scope="col">Lipides</th>
-					      <th scope="col">Glucides</th>
+                          <th scope="col">${TABLE_HEADER_FOOD_NAME }</th>
+					      <th scope="col">${TABLE_HEADER_QUANTITY }</th>
+					      <th scope="col">${TABLE_HEADER_CALORIES }</th>
+					      <th scope="col">${TABLE_HEADER_VEGETAL_PROTEINS}</th>
+					      <th scope="col">${TABLE_HEADER_ANIMAL_PROTEINS }</th>
+					      <th scope="col">${TABLE_HEADER_LIPIDS }</th>
+					      <th scope="col">${TABLE_HEADER_CARBS }</th>
                     </tr> 
                   </thead>
                   <tbody>
@@ -204,7 +223,7 @@
 <div id="formDelete">
 	<form action="editionMenu/delete" method="post">
 		<input type="hidden" name="idMenu" value="${idMenu}"/>
-		<button type="submit" class="btn btn-sm btn-primary btn-create" id="deleteMenuBtn">Supprimer mon menu</button>
+		<button type="submit" class="btn btn-sm btn-primary btn-create" id="deleteMenuBtn">${BUTTON_DELETE_MENU }</button>
 	</form>
 </div>
 </body>

@@ -4,6 +4,8 @@
     
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <%@page import="fr.dawan.beans.*"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
 		+ request.getContextPath() + "/"
 		%>" />
 <meta charset="ISO-8859-1">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'><title>Ajout d'un aliment r�f</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'><title>Ajout d'un aliment réf</title>
 <link rel="stylesheet" href="css/editAlimentRef.css" type="text/css" />
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -23,6 +25,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
+
+	<spring:message code="TABLE_HEADER_BUTTON" text="texte par défaut si aucune clé n’est trouvée" var="TABLE_HEADER_BUTTON"/>
 
 	<input type="hidden" name="affForm" id="affForm" value="${afficheForm}"/>
 	
@@ -36,49 +40,49 @@
 		            <div class="panel panel-default">
 		                <div class="panel-body form-horizontal payment-form">
 		                    <div class="form-group">
-		                        <label for="concept" class="col-sm-3 control-label">Nom</label>
+		                        <label for="concept" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_NAME" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="text" required="required" class="form-control" id="nom" name="nom">
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="description" class="col-sm-3 control-label">Prot��nes Animales</label>
+		                        <label for="description" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_ANIMAL_PROTEIN" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="number" required="required" value="0" class="form-control" id="proteinesAnimales" name="proteinesAnimales" min="0" step="0.01"/>
 		                        </div>
 		                    </div> 
 		                    <div class="form-group">
-		                        <label for="amount" class="col-sm-3 control-label">Prot��nes V�g�tales</label>
+		                        <label for="amount" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_VEGETAL_PROTEIN" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="number" required="required" value="0" class="form-control" id="proteinesVegetales" name="proteinesVegetales" min="0" step="0.01"/>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Lipides</label>
+		                        <label for="status" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_LIPIDS" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="number" required="required" value="0" class="form-control" id="lipides" name="lipides" min="0" step="0.01"/>
 		                        </div>
 		                    </div>   
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Glucides</label>
+		                        <label for="status" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_GLUCIDES" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="number" required="required" value="0" class="form-control" id="glucides" name="glucides" min="0" step="0.01"/>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Calories</label>
+		                        <label for="status" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_CALORIES" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="number" class="form-control" required="required" value="0" id="calories" name="calories" min="0" step="0.01"/>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Quantit� de r�f�rence </label>
+		                        <label for="status" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_QUANTITY" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <input type="number" required="required" value="0" class="form-control" id="quantiteRef" name="quantiteRef" min="0" step="0.01"/>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Unit� de r�f�rence</label>
+		                        <label for="status" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_REF_UNITY" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <select class="form-control" name="uniteRef">
 										<core:forEach var="unite" items="<%= UniteDeRef.values() %>">
@@ -88,7 +92,7 @@
 		                        </div>
 		                    </div> 
 		                    <div class="form-group">
-		                        <label for="status" class="col-sm-3 control-label">Cat�gorie</label>
+		                        <label for="status" class="col-sm-3 control-label"><spring:message code="FORM_ALREF_CATEGORY" text="texte par défaut si aucune clé n’est trouvée"/></label>
 		                        <div class="col-sm-9">
 		                            <select class="form-control" name="categorie">
 										<core:forEach var="categorie" items="<%= Categorie.values() %>">
@@ -101,7 +105,7 @@
 		                    
 		                    <div class="row">
 				                <div class="col-xs-12">
-									<button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+									<button type="submit" class="btn btn-primary btn-block"><spring:message code="FORM_ALREF_ADD_BUTTON" text="texte par défaut si aucune clé n’est trouvée"/></button>
 				                </div>                
 				            </div>
 				            <div>
@@ -110,7 +114,7 @@
 				            <div class="row">
 				                <div class="col-xs-12">
 				                    <hr style="border:1px dashed #dddddd;">
-				                    <a href="editionAlimentRef/finAjout" class="btn btn-primary btn-block" id="btnTerminer">Terminer</a>
+				                    <a href="editionAlimentRef/finAjout" class="btn btn-primary btn-block" id="btnTerminer"><spring:message code="TERMINATE_BUTTON" text="texte par défaut si aucune clé n’est trouvée"/></a>
 				                </div>                
 				            </div>
 		                </div>
@@ -128,10 +132,10 @@
               <div class="panel-heading">
                 <div class="row">
                   <div class="col col-xs-6">
-                    <h3 class="panel-title">Mes aliments</h3>
+                    <h3 class="panel-title"><spring:message code="TABLE_TITLE_ALREF" text="texte par défaut si aucune clé n’est trouvée"/></h3>
                   </div>
                   <div class="col col-xs-6 text-right">
-                    <button type="button" class="btn btn-sm btn-primary btn-create ajout" id="myBtn">Ajouter  un aliment ref</button>
+                    <button type="button" class="btn btn-sm btn-primary btn-create ajout" id="myBtn">${TABLE_HEADER_BUTTON}</button>
                   </div>
                 </div>
               </div>
@@ -139,14 +143,14 @@
                 <table class="table table-striped table-bordered table-list">
                   <thead>
                     <tr>
-                    	<th scope="col">Action</th>
-                          <th scope="col">Nom</th>
-					      <th scope="col">Quantit�</th>
-					      <th scope="col">Calories</th>
-					      <th scope="col">Prot�ines v�g�tales</th>
-					      <th scope="col">Prot�ines Animales</th>
-					      <th scope="col">Lipides</th>
-					      <th scope="col">Glucides</th>
+                    	  <th scope="col"><spring:message code="TABLE_HEADER_ACTION" text="texte par défaut si aucune clé n’est trouvée"/></th>
+                          <th scope="col"><spring:message code="TABLE_HEADER_FOOD_NAME" text="texte par défaut si aucune clé n’est trouvée"/></th>
+					      <th scope="col"><spring:message code="TABLE_HEADER_QUANTITY" text="texte par défaut si aucune clé n’est trouvée"/></th>
+					      <th scope="col"><spring:message code="TABLE_HEADER_CALORIES" text="texte par défaut si aucune clé n’est trouvée"/></th>
+					      <th scope="col"><spring:message code="TABLE_HEADER_VEGETAL_PROTEINS" text="texte par défaut si aucune clé n’est trouvée"/></th>
+					      <th scope="col"><spring:message code="TABLE_HEADER_ANIMAL_PROTEINS" text="texte par défaut si aucune clé n’est trouvée"/></th>
+					      <th scope="col"><spring:message code="TABLE_HEADER_LIPIDS" text="texte par défaut si aucune clé n’est trouvée"/></th>
+					      <th scope="col"><spring:message code="TABLE_HEADER_CARBS" text="texte par défaut si aucune clé n’est trouvée"/></th>
                     </tr> 
                   </thead>
                   <tbody>
@@ -170,8 +174,8 @@
                               
                             </td>
 							<td contenteditable='true'>${aliment.nom}</td>
-							<td contenteditable='true'>${aliment.calories}</td>
 							<td contenteditable='true'>${aliment.quantiteRef}</td>
+							<td contenteditable='true'>${aliment.calories}</td>
 							<td contenteditable='true'>${aliment.proteinesVegetales}</td>
 							<td contenteditable='true'>${aliment.proteinesAnimales}</td>
 							<td contenteditable='true'>${aliment.lipides}</td>

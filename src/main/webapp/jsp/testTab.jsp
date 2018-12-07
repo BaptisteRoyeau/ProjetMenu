@@ -42,7 +42,6 @@
           <span class="table-down glyphicon glyphicon-arrow-down"></span>
         </td>
       </tr>
-      <!-- This is our clonable table line -->
       <tr class="hide">
         <td contenteditable="true">Untitled</td>
         <td contenteditable="true">undefined</td>

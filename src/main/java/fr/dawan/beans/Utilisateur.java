@@ -3,6 +3,7 @@ package fr.dawan.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -14,11 +15,13 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "utilisateur")
 	private List<AlimentRef> alimentsRef = new ArrayList<AlimentRef>();
 	private String username;
-	private String firstName;
+	private String lastName;
 	private String password;
 	private float poids;
 	private float taille;
 	private String sexe;
+	
+	@Column(unique=true)
 	private String email;
 
 	public Utilisateur() {
@@ -62,12 +65,12 @@ public class Utilisateur extends DbObject {
 		this.alimentsRef = alimentsRef;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public float getPoids() {
@@ -105,7 +108,7 @@ public class Utilisateur extends DbObject {
 	@Override
 	public String toString() {
 		return "Utilisateur [menus=" + menus + ", alimentsRef=" + alimentsRef + ", username=" + username
-				+ ", firstName=" + firstName + ", password=" + password + ", poids=" + poids + ", taille=" + taille
+				+ ", firstName=" + lastName + ", password=" + password + ", poids=" + poids + ", taille=" + taille
 				+ ", sexe=" + sexe + "]";
 	}
 

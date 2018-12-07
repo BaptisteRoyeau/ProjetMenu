@@ -3,7 +3,6 @@
  */
 function editMenu() {
 	var test = document.getElementById("afficheDetail").value;
-	console.log(test);
 	
 	if(test != null){
 		if (test == "1") {
@@ -31,9 +30,9 @@ function terminer(){
 	});
 }
 
-
 document.addEventListener("DOMContentLoaded", function(event) {
 	editMenu();
 	editAliment();
 	terminer();
+	
 });

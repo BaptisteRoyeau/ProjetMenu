@@ -28,15 +28,10 @@
 		Votre adresse : <input type="text" name="adresse" placeholder="Votre adresse"/>
 		<input type="submit" value="Inscription"/>
 	</form> -->
+	<input id="preSelectSexe" type="hidden" value="${sexe}">
 	
 	<div class="container">
 			<div class="row main">
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	
-	               		<hr />
-	               	</div>
-	            </div> 
 				<div class="main-login main-center">
 					<form class="form-horizontal" method="post" action="ajoutUtilisateur">
 						
@@ -45,7 +40,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Name"/>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your first name" value="${username}" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -55,29 +50,29 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="firstName" id="firstName"  placeholder="Enter your Name"/>
+									<input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Enter your last name" value="${lastName}" required="required"/>
 								</div>
 							</div>
 						</div>
 						
-						<!-- div class="form-group"> -->
+						<div class="form-group">
 							<!-- <label for="sexe">Sexe</label> -->
-<!-- 								<div class="cols-sm-10">
-									<div class="input-group"> -->
-										<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
-										Homme<input type="radio" class="form-control" name="sexe" id="sexe" value="Homme"/> 
+								<div class="cols-sm-10">
+									<div class="input-group">  
+										<label for="sexe" class="cols-sm-2 control-label">Sexe</label></br>
+										Homme <input type="radio" name="sexe" id="sexeH" value="Homme" required="required"/> 
 										
-										Femme<input type="radio" class="form-control" name="sexe" id="sexe" value="Femme"/>
-<!-- 									</div>
-								</div> -->
-						<!-- </div> -->
-						
+										Femme <input type="radio" name="sexe" id="sexeF" value="Femme" required="required"/>
+ 									</div>
+								</div> 
+						</div>
+				
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Taille (cm)</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="number"  step="0,01" min="0" class="form-control" name="taille" id="taille"  value="0" required="required"/>
+										<input type="number"  step="0,01" min="0" class="form-control" name="taille" id="taille" value="${size}" required="required"/>
 									</div>
 								</div>
 						</div>
@@ -87,17 +82,18 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="number"  step="0,01" min="0" class="form-control" name="poids" id="poids"  value="0" required="required"/>
+										<input type="number"  step="0,01" min="0" class="form-control" name="poids" id="poids" value="${weight}" required="required"/>
 									</div>
 								</div>
 						</div>
 	
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Email</label>
+							<div class="emailError" id="emailError">${emailError}</div>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -109,7 +105,17 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" required="required"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="confirmPassword" class="cols-sm-2 control-label">Confirmer votre mot de passe</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirmPassword" id="confirm_password"  placeholder="Enter your Password" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -117,9 +123,13 @@
 						<div class="form-group ">
 							<input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="S'enregistrer"/>
 						</div>
+						
+						
 					</form>
 				</div>
 			</div>
 		</div>
+		
+		<script src="js/inscription.js"></script>
 </body>
 </html>
